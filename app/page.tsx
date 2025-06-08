@@ -1,10 +1,9 @@
 import CompanionCard from "@/components/CompanionCard";
 import CompanionList from "@/components/CompanionList";
 import CTA from "@/components/CTA";
-import { recentSessions } from "@/constants";
 import {
   getAllCompanions,
-  getRecentSession,
+  getRecentSessions,
 } from "@/lib/actions/companion.actions";
 import { getSubjectColor } from "@/lib/utils";
 // import { Button } from "@/components/ui/button";
@@ -12,7 +11,7 @@ import React from "react";
 
 const Page = async () => {
   const companions = await getAllCompanions({ limit: 3 });
-  const recentCompanion = await getRecentSession(10);
+  const recentCompanion = await getRecentSessions(10);
 
   return (
     <main>
@@ -30,7 +29,7 @@ const Page = async () => {
       <section className="home-section">
         <CompanionList
           title="Recently completed Session"
-          companions={recentSessions}
+          companions={recentCompanion}
           className="w-2/3 max-lg:w-full"
         />
         <CTA />
